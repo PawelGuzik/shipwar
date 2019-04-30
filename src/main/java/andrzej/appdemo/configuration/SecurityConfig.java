@@ -53,16 +53,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/search/{searchWord}").permitAll()
 		.antMatchers("/activatelink/**").permitAll()
 				.antMatchers("/myexperts/{expert_id}").hasAnyAuthority("ROLE_USER")
+				.antMatchers("/shipwar").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 //		.antMatchers("/admin").hasAuthority("ROLE_ADMIN")
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.formLogin()
 		.loginPage("/login")
 		.failureUrl("/login?error=true")
-		.defaultSuccessUrl("/").usernameParameter("email")
+		.defaultSuccessUrl("/index").usernameParameter("email")
 		.passwordParameter("password")
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/")
+		.logoutSuccessUrl("/index")
 		.and().exceptionHandling().accessDeniedPage("/denied");
 
 	}

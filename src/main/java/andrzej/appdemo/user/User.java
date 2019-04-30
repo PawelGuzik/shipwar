@@ -1,7 +1,14 @@
 package andrzej.appdemo.user;
 
+import andrzej.appdemo.constants.AppDemoConstants;
+import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.WebApplicationContext;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.Set;
 
 @Entity
@@ -42,6 +49,11 @@ public class User {
     private String activationCode;
 
 
+
+    @Column(name = "game_Id")
+    private int gameId;
+
+
     @Transient
     private String operacja;
 
@@ -51,7 +63,35 @@ public class User {
     @Transient
     private String newPassword;
 
+
+    @Transient
+    private String[] warTable;
+
+
+    @Column(name ="db_war_table")
+    private String dataBaseWarTable;
+
+
+
     public User() {
+        warTable = new String[64];
+        for (int i = 0; i < warTable.length ; i++) {
+            warTable[i] = "0";
+        }
+        dataBaseWarTable = "0000000000000000000000000000000000000000000000000000000000000000";
+    }
+
+    public boolean getShot(String shipPos){
+        if(warTable[AppDemoConstants.warTableMap.get(shipPos)].equalsIgnoreCase("1") ){
+            warTable[AppDemoConstants.warTableMap.get(shipPos)] = "2";
+            setWarTable(warTable);
+            return true;
+        }else if(warTable[AppDemoConstants.warTableMap.get(shipPos)].equalsIgnoreCase("0")) {
+            warTable[AppDemoConstants.warTableMap.get(shipPos)] = "3";
+            setWarTable(warTable);
+            return false;
+        }
+        return false;
     }
 
 
@@ -144,4 +184,54 @@ public class User {
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
     }
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gemeId) {
+        this.gameId = gameId;
+    }
+
+    public String[] getWarTable() {
+        return warTable;
+    }
+
+    public void setWarTable(String[] warTable) {
+
+        this.warTable = warTable;
+        if(dataBaseWarTable==null) {
+            dataBaseWarTable = "";
+            for (int i = 0; i < warTable.length; i++) {
+
+                this.dataBaseWarTable = dataBaseWarTable + warTable[i];
+                dataBaseWarTable.trim();
+            }
+        }else {
+            for (int i = 0; i < warTable.length; i++) {
+                if (!warTable[i].equals(dataBaseWarTable.charAt(i))){
+                    String first = dataBaseWarTable.substring(0, i);
+                    String second = dataBaseWarTable.substring(i+1);
+                    dataBaseWarTable = first + warTable[i] + second;
+                }
+            }
+        }
+    }
+
+    public void saveStringToWarTable(String stringWarTable){
+        for (int i = 0; i <64 ; i++) {
+            if(stringWarTable != null) {
+                warTable[i] = Character.toString(stringWarTable.charAt(i));
+            }
+        }
+    }
+
+    public String getDataBaseWarTable() {
+        return dataBaseWarTable;
+    }
+
+    public void setDataBaseWarTable(String dataBaseWarTable) {
+        this.dataBaseWarTable = dataBaseWarTable;
+    }
+
 }

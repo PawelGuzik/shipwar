@@ -27,6 +27,8 @@ public class UserServiceImpl implements UserService {
     }
 
 
+
+
     @Override
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -66,6 +68,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserActivation(int activeCode, String activationCode) {
         userRepository.updateActivation(activeCode, activationCode);
+    }
+
+    @Override
+    public User findEnemyByGameId(int id, String email){
+       return userRepository.findEnemyByGameId(id, email);
+    }
+
+    @Override
+    public void updateWarTable(String newTable, int id){
+        userRepository.updateWarTable(newTable, id);
+    }
+
+    @Override
+    public void updateGameId(int gameId, int userId){
+        userRepository.updateGameId(gameId, userId);
     }
 
 

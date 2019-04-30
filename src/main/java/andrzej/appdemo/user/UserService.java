@@ -13,4 +13,8 @@ public interface UserService {
 	User getUserByIdEquals(int id);
 	public void updateUserActivation(int activeCode, String activationCode);
 
+	public User findEnemyByGameId(int id, String email);
+	public void updateWarTable(String newTable, int id);
+	public void updateGameId(int gameId, int userId);
+
 }

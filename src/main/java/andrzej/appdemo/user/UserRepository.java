@@ -1,9 +1,11 @@
 package andrzej.appdemo.user;
 
+import org.hibernate.sql.Update;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 @Repository("userRepository")
@@ -27,6 +29,18 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query("UPDATE User u SET u.active =:activeParam WHERE u.activationCode =:activationCode")
     public void updateActivation(@Param("activeParam") int activeParam, @Param("activationCode") String activationCode);
+
+    @Query(value = "SELECT *FROM User u WHERE game_Id =:game_Id AND email <>:email LIMIT 1", nativeQuery = true)
+    User findEnemyByGameId(@Param("game_Id") int gameId, @Param("email") String email);
+
+    @Modifying
+    @Query("UPDATE User u SET u.dataBaseWarTable = :newTable WHERE u.id= :id")
+    public void updateWarTable(@Param("newTable") String newTable, @Param("id") Integer id);
+
+    @Modifying
+    @Query("UPDATE User u SET u.gameId = :game_Id WHERE u.id= :id")
+    public void updateGameId(@Param("game_Id") int gameId, @Param("id") int id);
+
 
 }
 
