@@ -5,7 +5,7 @@
            uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,8 +16,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link  type="text/css" href="/resources/css/style.css" rel="stylesheet">
 
-    <%--<!-- Bootstrap CSS -->--%>
+<%--<!-- Bootstrap CSS -->--%>
     <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">--%>
 
     <%--&lt;%&ndash;<!-- css custom styling-->&ndash;%&gt;--%>
@@ -27,11 +28,10 @@
 </head>
 <body>
 <%@include file="/WEB-INF/incl/menu.app" %>
-<h2>
     <h2 align="center"><s:message code="logowanie.pageName"/>
 </h2>
 
-<form id="loginForm" action="${pageContext.request.contextPath}/login" method="POST" >
+<form id="loginForm" action="/login" method="POST" >
 
     <table width="350" border="0" cellpadding="4" cellspacing="1"
            align="center">
@@ -49,12 +49,12 @@
 
             </td>
             <td align="center">
-                <div class="input-group mb-3" weight="600px">
+                <div class="input-group mb-3" weight="400px" >
                     <div class="input-group-prepend" weight="600px">
                         <span class="input-group-text" id="basic-addon1">Email</span>
                     </div>
                     <input type="text" name="email" id="email" class="form-control" placeholder="Email"
-                           aria-label="Email" aria-describedby="basic-addon1" weight="600px">
+                           aria-label="Email" aria-describedby="basic-addon1" weight="400px">
                 </div>
 
             </td>

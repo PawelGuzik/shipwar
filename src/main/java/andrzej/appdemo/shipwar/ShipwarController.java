@@ -64,13 +64,14 @@ public class ShipwarController {
             if(enemy!=null) {
                 enemy.saveStringToWarTable(enemy.getDataBaseWarTable());
 
-        if(enemy.getGameId()==2) {
+            if(enemy.getGameId()==2) {
             mapWarTable(user, model, "");
             mapWarTable(enemy, model, "enemy");
             model.addAttribute("user", user.getName() + " " + user.getLastName());
             model.addAttribute("enemy", enemy.getName() + " " + enemy.getLastName());
             return "play";
-        }}
+        }
+            }
             return "waiting";
         }
 

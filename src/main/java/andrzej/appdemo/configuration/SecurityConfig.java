@@ -49,11 +49,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/register").permitAll()
 		.antMatchers("/adduser").permitAll()
 		.antMatchers("/viewexpert/{expert_id}").permitAll()
+		.antMatchers("/resources/css/style.css").permitAll()
 		.antMatchers("/resources/images/{expert_id}").permitAll()
                 .antMatchers("/search/{searchWord}").permitAll()
 		.antMatchers("/activatelink/**").permitAll()
 				.antMatchers("/myexperts/{expert_id}").hasAnyAuthority("ROLE_USER")
 				.antMatchers("/shipwar").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+
 //		.antMatchers("/admin").hasAuthority("ROLE_ADMIN")
 		.anyRequest().authenticated()
 		.and().csrf().disable()
