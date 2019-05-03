@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -21,12 +23,15 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+	@Autowired
+	CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
 	@Autowired
 	private BCryptPasswordEncoder bcp;
 	
 	@Autowired
 	private DataSource ds;
+
+
 	
 	@Value("${spring.queries.users-query}")
 	private String usersQuery;
@@ -44,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSec
 		.authorizeRequests()
 		.antMatchers("/").permitAll()
+		.antMatchers("/reload")	.permitAll()
 		.antMatchers("/index").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/register").permitAll()
@@ -64,14 +70,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.failureUrl("/login?error=true")
 		.defaultSuccessUrl("/index").usernameParameter("email")
 		.passwordParameter("password")
-		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		.and().logout().logoutSuccessHandler(customizeLogoutSuccessHandler)
 		.logoutSuccessUrl("/index")
-		.and().exceptionHandling().accessDeniedPage("/denied");
+		.and().exceptionHandling().accessDeniedPage("/denied")
+        .and().sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry());
 
 	}
-	
 
 
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package andrzej.appdemo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,11 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private SessionRegistry sessionRegistry;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -32,7 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(0);
+        user.setActive(1);
         Role role = roleRepository.findByRole("ROLE_USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(role)));
         userRepository.save(user);
@@ -85,5 +89,22 @@ public class UserServiceImpl implements UserService {
         userRepository.updateGameId(gameId, userId);
     }
 
+    @Override
+    public List<String> getUsersFromSessionRegistry(){
+        return sessionRegistry.getAllPrincipals().stream()
+                .filter(u -> !sessionRegistry.getAllSessions(u, false).isEmpty())
+                .map(Object::toString)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateActivePlayer(int activePlayer, int userId){
+        userRepository.updateActivePlayer(activePlayer, userId);
+    }
+
+    @Override
+    public void updateEnemyPlayer(int enemyId, int userId){
+        userRepository.updateEnemyPlayer(enemyId, userId);
+    }
 
 }

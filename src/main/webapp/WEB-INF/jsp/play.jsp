@@ -5,6 +5,9 @@
   Time: 11:32
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import = "java.io.*,java.util.*" %>
+<%@ page import="andrzej.appdemo.user.UserService" %>
+<%@ page import="andrzej.appdemo.user.UserServiceImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -12,6 +15,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Title</title>
     <meta charset="utf-8">
@@ -23,14 +27,32 @@
 
 </head>
 <body>
+<script>
+    window.setInterval(function () {
+        $("#div1").load('${pageContext.request.contextPath}/reload #toReload');
+    }, 1000);
+
+</script>
 
 
-<%@include file="/WEB-INF/incl/menu.app" %>
+
+
+
+<table width="100%" border="0" cellpadding="8" cellspacing="4" class="tableMenuBg" bgcolor="transparent">
+    <tr>
+        <td  align="right" width="1500">
+            <sec:authorize access="isAuthenticated()">
+                <a class="btn btn-primary mb1 bg-olive" role="button" href="${pageContext.request.contextPath}/logout"><s:message code="menu.logout"/></a>&nbsp;&nbsp;
+            </sec:authorize>
+        </td>
+    </tr>
+</table>
 
 
 <div class="maingrid">
         <h1 class="header">
-            Gra rozpoczęta !
+            Gra rozpoczęta<br>
+            Trwa tura gracza <div class="header" id="div1"></div>
         </h1>
     <p class="playername"> <em>Gracz: ${user}</em></p><p class="enemyname"><em>Przeciwnik: ${enemy}</em></p>
         <div class="wrapper mybattle">
@@ -766,7 +788,5 @@
 
 </div>
 </div>
-<input type="button" id="confirm" class="btn" value="Gotowy do gry"
-       onclick="window.location.href='${pageContext.request.contextPath}/play'" />
 </body>
 </html>

@@ -54,6 +54,10 @@ public class User {
     private int gameId;
 
 
+    @Column(name = "enemy_id")
+    private int enemyId;
+
+
     @Transient
     private String operacja;
 
@@ -63,14 +67,14 @@ public class User {
     @Transient
     private String newPassword;
 
-
     @Transient
     private String[] warTable;
-
 
     @Column(name ="db_war_table")
     private String dataBaseWarTable;
 
+    @Column(name ="active_player")
+    private int activePlayer;
 
 
     public User() {
@@ -189,7 +193,7 @@ public class User {
         return gameId;
     }
 
-    public void setGameId(int gemeId) {
+    public void setGameId(int gameId) {
         this.gameId = gameId;
     }
 
@@ -232,6 +236,22 @@ public class User {
 
     public void setDataBaseWarTable(String dataBaseWarTable) {
         this.dataBaseWarTable = dataBaseWarTable;
+    }
+
+    public int getActivePlayer() {
+        return activePlayer;
+    }
+
+    public void setActivePlayer(int activePlayer) {
+        this.activePlayer = activePlayer;
+    }
+
+    public int getEnemyId() {
+        return enemyId;
+    }
+
+    public void setEnemyId(int enemyId) {
+        this.enemyId = enemyId;
     }
 
 }

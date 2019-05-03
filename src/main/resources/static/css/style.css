@@ -72,6 +72,7 @@
 /*}*/
 body{
     background-image: url('../images/sea.png');
+    -moz-background-size: 100% 100%;
     background-size: 100% 100%;
     background-position: center;
 }
@@ -237,6 +238,12 @@ body{
 }
 .btn-primary{
     background-color: darkgreen;
+}
+.endgame{
+    font-size: 60px;
+    font-family: "Arial", sans-serif;
+    color: brown;
+    border: red;
 }
 
 

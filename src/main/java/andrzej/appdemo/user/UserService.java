@@ -16,5 +16,8 @@ public interface UserService {
 	public User findEnemyByGameId(int id, String email);
 	public void updateWarTable(String newTable, int id);
 	public void updateGameId(int gameId, int userId);
+	public List<String> getUsersFromSessionRegistry();
+	public void updateActivePlayer(int activePlayer, int userId);
+	public  void updateEnemyPlayer(int enemyId, int userId);
 
 }
