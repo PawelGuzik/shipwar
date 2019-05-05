@@ -23,14 +23,14 @@ public interface UserRepository extends JpaRepository<User, Integer> {
                                   @Param("newEmail") String newEmail, @Param("id") Integer id);
 
 
-    @Query(value = "SELECT *FROM User u WHERE user_id =:id", nativeQuery = true)
+    @Query(value = "SELECT *FROM user u WHERE user_id =:id", nativeQuery = true)
     User getUserByIdEquals(@Param("id") int id);
 
     @Modifying
     @Query("UPDATE User u SET u.active =:activeParam WHERE u.activationCode =:activationCode")
     public void updateActivation(@Param("activeParam") int activeParam, @Param("activationCode") String activationCode);
 
-    @Query(value = "SELECT *FROM User u WHERE game_Id =:game_Id AND email <>:email LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM user u WHERE game_Id =:game_Id AND email <>:email LIMIT 1", nativeQuery = true)
     User findEnemyByGameId(@Param("game_Id") int gameId, @Param("email") String email);
 
     @Modifying
