@@ -22,7 +22,7 @@
 
 
 
-<body>
+<body class="main_body">
 <div class="index_container">
 <h1 class="index_header">Staki - gra dla dwóch graczy </h1>
 </div>

@@ -18,7 +18,7 @@
 <title><s:message code="profilEdit.pageName"/></title>
 </head>
 <body>
-<body>
+<body class="main_body">
 <%@include file="/WEB-INF/incl/menu.app" %>
 
 <h2 align="center"><s:message code="profilEdit.pageName"/></h2>

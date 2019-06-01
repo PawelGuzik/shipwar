@@ -7,13 +7,10 @@ import andrzej.appdemo.utilities.UserUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.ws.rs.GET;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 @Controller
 public class ShipwarController {
@@ -37,25 +34,21 @@ public class ShipwarController {
 
         model.addAttribute("user_id", user.getId());
         model.addAttribute("user", user);
-        return "shipwar";
+        return "shipwarAJAX";
     }
 
-    @GET
-    @RequestMapping(value = "/updateShip")
+   @GET
+   @RequestMapping(value = "/updateShip")
 
-        public String updateShip(@RequestParam(value = "id") String shipPos, Model model){
-      //  user.setWarTable();
-        String username = UserUtilities.getLoggedUser();
-        User user = userService.findUserByEmail(username);
-        if(user.getGameId()!=2 && ShipwarGame.checkIfShipsPossitionIsAvalible(user, shipPos)) {
-            user.saveStringToWarTable(user.getDataBaseWarTable());
-            saveShipPos(shipPos, user);
-
-        }
-        mapWarTable(user, model, "");
-            return "shipwar";
-        }
-
+   public synchronized   void updateShip(@RequestParam(value = "id") String shipPos, Model model){
+       //  user.setWarTable();
+       String username = UserUtilities.getLoggedUser();
+       User user = userService.findUserByEmail(username);
+       if(user.getGameId()!=2 && ShipwarGame.checkIfShipsPossitionIsAvalible(user, shipPos)) {
+           user.saveStringToWarTable(user.getDataBaseWarTable());
+           saveShipPos(shipPos, user);
+       }
+   }
         @GET
         @RequestMapping(value = "/play")
         public String showPlayPage(Model model) {
@@ -88,7 +81,7 @@ public class ShipwarController {
             } else {
                 userService.updateWarTable(null, user.getId());
                 userService.updateGameId(1, user.getId());
-                return "shipwar";
+                return "shipwarAJAX";
             }
         }
 
@@ -123,15 +116,11 @@ public class ShipwarController {
                 userService.updateEnemyPlayer(0, enemy.getId());
                 return "endGame";
             }
-
-
             mapWarTable(user, model, "");
             mapWarTable(enemy, model, "enemy");
             model.addAttribute("user", user.getName() + " " + user.getLastName());
             model.addAttribute("enemy", enemy.getName() + " " + enemy.getLastName());
-
             return "play";
-
         }
 
         @GET
@@ -153,13 +142,12 @@ public class ShipwarController {
             if(user.getActivePlayer()==1) {
                 model.addAttribute("activePlayer", user.getName() + " " + user.getLastName());
             }else {
-
                 model.addAttribute("activePlayer", enemy.getName() + " " + enemy.getLastName());
             }
         return "contentRefresh";
         }
 
-        private void saveShipPos(String shipPos, User user){
+        private synchronized void saveShipPos(String shipPos, User user){
             String[] warTable = user.getWarTable();
             warTable[AppDemoConstants.warTableMap.get(shipPos)] = "1";
             user.setWarTable(warTable);
@@ -173,11 +161,6 @@ public class ShipwarController {
                 String attributeName = prefix + "shipPos" + i;
                 model.addAttribute(attributeName, warTable[i] );
             }
-
-
-
         }
-
-
     }
 

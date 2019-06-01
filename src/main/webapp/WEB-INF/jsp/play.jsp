@@ -17,16 +17,15 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 
-
+    <title>Title</title>
 </head>
-<body>
+<body class="main_body">
 <script>
     window.setInterval(function () {
         $("#div1").load('${pageContext.request.contextPath}/reload #toReload');
@@ -69,91 +68,165 @@
 
     <button type="button" class="box r" disabled>A</button>
 
-    <button type="button" class="box <c:choose><c:when test="${shipPos0=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos1=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos2=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos3=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos4=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos5=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos6=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos7=='1'}">ship"</c:when></c:choose>"</button>
+    <button type="button" class="box
+            <c:choose>
+                <c:when test="${shipPos0=='1'}">ship"</c:when>
+                <c:when test="${shipPos0=='2'}">destroy"</c:when>
+            </c:choose>"</button>
+    <button type="button" class="box
+            <c:choose>
+                <c:when test="${shipPos1=='1'}">ship"</c:when>
+                <c:when test="${shipPos1=='2'}">destroy"</c:when>
+            </c:choose>"</button>
+    <button type="button" class="box
+            <c:choose>
+                <c:when test="${shipPos2=='1'}">ship"</c:when>
+                <c:when test="${shipPos2=='2'}">destroy"</c:when>
+            </c:choose>"</button>
+    <button type="button" class="box <c:choose>
+            <c:when test="${shipPos3=='1'}">ship"</c:when>
+            <c:when test="${shipPos3=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos4=='1'}">ship"</c:when>
+            <c:when test="${shipPos4=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos5=='1'}">ship"</c:when>
+            <c:when test="${shipPos5=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos6=='1'}">ship"</c:when>
+            <c:when test="${shipPos6=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos7=='1'}">ship"</c:when>
+            <c:when test="${shipPos7=='2'}">destroy"</c:when></c:choose>"</button>
 
     <button type="button" class="box r" disabled>B</button>
 
-    <button type="button" class="box <c:choose><c:when test="${shipPos8=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos9=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos10=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos11=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos12=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos13=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos14=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos15=='1'}">ship"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos8=='1'}">ship"</c:when>
+            <c:when test="${shipPos8=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos9=='1'}">ship"</c:when>
+            <c:when test="${shipPos9=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos10=='1'}">ship"</c:when>
+            <c:when test="${shipPos10=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos11=='1'}">ship"</c:when>
+            <c:when test="${shipPos11=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos12=='1'}">ship"</c:when>
+            <c:when test="${shipPos12=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos13=='1'}">ship"</c:when>
+            <c:when test="${shipPos13=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos14=='1'}">ship"</c:when>
+            <c:when test="${shipPos14=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos15=='1'}">ship"</c:when>
+            <c:when test="${shipPos15=='2'}">destroy"</c:when></c:choose>"</button>
 
     <button type="button" class="box r" disabled>C</button>
 
-    <button type="button" class="box <c:choose><c:when test="${shipPos16=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos17=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos18=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos19=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos20=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos21=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos22=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos23=='1'}">ship"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos16=='1'}">ship"</c:when>
+            <c:when test="${shipPos16=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos17=='1'}">ship"</c:when>
+            <c:when test="${shipPos17=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos18=='1'}">ship"</c:when>
+            <c:when test="${shipPos18=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos19=='1'}">ship"</c:when>
+            <c:when test="${shipPos19=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos20=='1'}">ship"</c:when>
+            <c:when test="${shipPos20=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos21=='1'}">ship"</c:when>
+            <c:when test="${shipPos21=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos22=='1'}">ship"</c:when>
+            <c:when test="${shipPos22=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos23=='1'}">ship"</c:when>
+            <c:when test="${shipPos23=='2'}">destroy"</c:when></c:choose>"</button>
 
     <button type="button" class="box r" disabled>D</button>
 
-    <button type="button" class="box <c:choose><c:when test="${shipPos24=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos25=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos26=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos27=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos28=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos29=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos30=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos31=='1'}">ship"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos24=='1'}">ship"</c:when>
+            <c:when test="${shipPos24=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos25=='1'}">ship"</c:when>
+            <c:when test="${shipPos25=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos26=='1'}">ship"</c:when>
+            <c:when test="${shipPos26=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos27=='1'}">ship"</c:when>
+            <c:when test="${shipPos27=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos28=='1'}">ship"</c:when>
+            <c:when test="${shipPos28=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos29=='1'}">ship"</c:when>
+            <c:when test="${shipPos29=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos30=='1'}">ship"</c:when>
+            <c:when test="${shipPos30=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos31=='1'}">ship"</c:when>
+            <c:when test="${shipPos31=='2'}">destroy"</c:when></c:choose>"</button>
 
     <button type="button" class="box r" disabled>E</button>
 
-    <button type="button" class="box <c:choose><c:when test="${shipPos32=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos33=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos34=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos35=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos36=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos37=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos38=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos39=='1'}">ship"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos32=='1'}">ship"</c:when>
+            <c:when test="${shipPos32=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos33=='1'}">ship"</c:when>
+            <c:when test="${shipPos33=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos34=='1'}">ship"</c:when>
+            <c:when test="${shipPos34=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos35=='1'}">ship"</c:when>
+            <c:when test="${shipPos35=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos36=='1'}">ship"</c:when>
+            <c:when test="${shipPos36=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos37=='1'}">ship"</c:when>
+            <c:when test="${shipPos37=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos38=='1'}">ship"</c:when>
+            <c:when test="${shipPos38=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos39=='1'}">ship"</c:when>
+            <c:when test="${shipPos39=='2'}">destroy"</c:when></c:choose>"</button>
 
     <button type="button" class="box r" disabled>F</button>
 
-    <button type="button" class="box <c:choose><c:when test="${shipPos40=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos41=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos42=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos43=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos44=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos45=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos46=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos47=='1'}">ship"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos40=='1'}">ship"</c:when>
+            <c:when test="${shipPos40=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos41=='1'}">ship"</c:when>
+            <c:when test="${shipPos41=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos42=='1'}">ship"</c:when>
+            <c:when test="${shipPos42=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos43=='1'}">ship"</c:when>
+            <c:when test="${shipPos43=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos44=='1'}">ship"</c:when>
+            <c:when test="${shipPos44=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos45=='1'}">ship"</c:when>
+            <c:when test="${shipPos45=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos46=='1'}">ship"</c:when>
+            <c:when test="${shipPos46=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos47=='1'}">ship"</c:when>
+            <c:when test="${shipPos47=='2'}">destroy"</c:when></c:choose>"</button>
 
     <button type="button" class="box r" disabled>G</button>
 
-    <button type="button" class="box <c:choose><c:when test="${shipPos48=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos49=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos50=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos51=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos52=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos53=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos54=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos55=='1'}">ship"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos48=='1'}">ship"</c:when>
+            <c:when test="${shipPos48=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos49=='1'}">ship"</c:when>
+            <c:when test="${shipPos49=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos50=='1'}">ship"</c:when>
+            <c:when test="${shipPos50=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos51=='1'}">ship"</c:when>
+            <c:when test="${shipPos51=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos52=='1'}">ship"</c:when>
+            <c:when test="${shipPos52=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos53=='1'}">ship"</c:when>
+            <c:when test="${shipPos53=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos54=='1'}">ship"</c:when>
+            <c:when test="${shipPos54=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos55=='1'}">ship"</c:when>
+            <c:when test="${shipPos55=='2'}">destroy"</c:when></c:choose>"</button>
 
     <button type="button" class="box r" disabled>H</button>
 
-    <button type="button" class="box <c:choose><c:when test="${shipPos56=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos57=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos58=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos59=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos60=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos61=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos62=='1'}">ship"</c:when></c:choose>"</button>
-    <button type="button" class="box <c:choose><c:when test="${shipPos63=='1'}">ship"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos56=='1'}">ship"</c:when>
+            <c:when test="${shipPos56=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos57=='1'}">ship"</c:when>
+            <c:when test="${shipPos57=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos58=='1'}">ship"</c:when>
+            <c:when test="${shipPos58=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos59=='1'}">ship"</c:when>
+            <c:when test="${shipPos59=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos60=='1'}">ship"</c:when>
+            <c:when test="${shipPos60=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos61=='1'}">ship"</c:when>
+            <c:when test="${shipPos61=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos62=='1'}">ship"</c:when>
+            <c:when test="${shipPos62=='2'}">destroy"</c:when></c:choose>"</button>
+    <button type="button" class="box <c:choose><c:when test="${shipPos63=='1'}">ship"</c:when>
+            <c:when test="${shipPos63=='2'}">destroy"</c:when></c:choose>"</button>
 
 </div>
 

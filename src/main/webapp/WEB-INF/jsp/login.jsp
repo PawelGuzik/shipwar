@@ -26,7 +26,7 @@
 
     <%--&lt;%&ndash;<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />&ndash;%&gt;--%>
 </head>
-<body>
+<body class="main_body">
 <%@include file="/WEB-INF/incl/menu.app" %>
     <h2 align="center"><s:message code="logowanie.pageName"/>
 </h2>

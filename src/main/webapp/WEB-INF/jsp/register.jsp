@@ -14,7 +14,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<link  type="text/css" href="/resources/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="main_body">
 <div>
 <%@include file="/WEB-INF/incl/menu.app" %>
 </div>

@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateWarTable(String newTable, int id){
+    public synchronized void updateWarTable(String newTable, int id){
         userRepository.updateWarTable(newTable, id);
     }
 

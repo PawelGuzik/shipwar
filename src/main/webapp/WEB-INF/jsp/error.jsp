@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><s:message code="error.errorPage"/></title>
 </head>
-<body>
+<body class="main_body">
 <%@include file="/WEB-INF/incl/menu.app" %>
 
 <img src="/resources/images/stamperror.jpg">

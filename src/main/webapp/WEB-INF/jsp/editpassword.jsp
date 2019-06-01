@@ -19,7 +19,7 @@
 		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 </head>
-<body>
+<body class="main_body">
 <%@include file="/WEB-INF/incl/menu.app" %>
 
 <h2 align="center"><s:message code="button.zmianaHasla"/></h2>

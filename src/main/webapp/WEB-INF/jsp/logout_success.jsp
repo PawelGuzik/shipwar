@@ -10,7 +10,7 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body class="main_body">
     ${username} został wylogowany !
 </body>
 </html>

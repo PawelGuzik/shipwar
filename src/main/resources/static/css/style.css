@@ -70,11 +70,16 @@
 	/*width: 150px;*/
 	/*color: #005984;*/
 /*}*/
-body{
-    background-image: url('../images/sea.png');
-    -moz-background-size: 100% 100%;
-    background-size: 100% 100%;
-    background-position: center;
+.main_body{
+
+
+    background: url(../images/main-sea.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+
 }
 .tableback{
     background: transparent;
@@ -208,7 +213,8 @@ body{
 }
 
 .box {
-    background-color: #444;
+    background-image: url('../images/clear-sea2.jpg');
+    background-size: 100% 100%;
     color: #fff;
     border-radius: 5px;
     padding: 0px;
@@ -219,31 +225,61 @@ body{
 .a {
     grid-column:auto;
     grid-row: auto;
-    background:#1E90FF ;
+    background-image: url('../images/fog5.jpg');
+
+    background-size: 100% 100%;
 }
 .a:disabled{
-    background: gold;
+    background-image: url('../images/small_ship2.jpg');
+    background-size: 100% 100%;
 }
 .r[type="button"]:disabled {
     background: #006400;
 }
 .ship {
     background: brown;
+    background-image: url('../images/small_ship2.jpg');
+    background-size: 100% 100%;
 }
 .destroy{
     background: crimson;
+    background-image: url('../images/small_ship_burning.jpg');
+    background-size: 100% 100%;
 }
 .missed{
-    background: white;
+    background-image: url('../images/clear-sea.jpg');
+    background-size: 100% 100%;
 }
 .btn-primary{
     background-color: darkgreen;
 }
 .endgame{
+    position: center;
+    text-align: center;
+    text-justify: auto;
+    vertical-align: middle;
+    margin: 20px;
     font-size: 60px;
     font-family: "Arial", sans-serif;
-    color: brown;
-    border: red;
+    color: red;
+    background: rgba(242, 242, 50,0.5) ;
+    border-radius: 5px;
+
+
+}
+.looser_background{
+    background: url(../images/end_game.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.winner_background{
+    background: url(../images/win_game2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 

@@ -197,11 +197,11 @@ public class User {
         this.gameId = gameId;
     }
 
-    public String[] getWarTable() {
+    public synchronized String[] getWarTable() {
         return warTable;
     }
 
-    public void setWarTable(String[] warTable) {
+    public synchronized void setWarTable(String[] warTable) {
 
         this.warTable = warTable;
         if(dataBaseWarTable==null) {
@@ -222,7 +222,7 @@ public class User {
         }
     }
 
-    public void saveStringToWarTable(String stringWarTable){
+    public synchronized void saveStringToWarTable(String stringWarTable){
         for (int i = 0; i <64 ; i++) {
             if(stringWarTable != null) {
                 warTable[i] = Character.toString(stringWarTable.charAt(i));
@@ -230,11 +230,11 @@ public class User {
         }
     }
 
-    public String getDataBaseWarTable() {
+    public synchronized String getDataBaseWarTable() {
         return dataBaseWarTable;
     }
 
-    public void setDataBaseWarTable(String dataBaseWarTable) {
+    public synchronized void setDataBaseWarTable(String dataBaseWarTable) {
         this.dataBaseWarTable = dataBaseWarTable;
     }
 

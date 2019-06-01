@@ -1,7 +1,5 @@
 package andrzej.appdemo.user;
 
-import andrzej.appdemo.EmailSender.EmailSender;
-import andrzej.appdemo.utilities.AppdemoUtils;
 import andrzej.appdemo.validators.UserRegisterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -23,9 +21,6 @@ public class RegisterController {
 
     @Autowired
     MessageSource messageSource;
-
-    @Autowired
-    private EmailSender emailSender;
 
     @GET
     @RequestMapping(value = "/register")
@@ -50,16 +45,11 @@ public class RegisterController {
         if (result.hasErrors()) {
             returnPage = "register";
         } else {
-            user.setActivationCode(AppdemoUtils.randomStringGenerator());
-            String content = "Wymagane potwierdzenie rejstracji. Kliknij w poniższy link aby aktywować konto:\n" +
-                    "http://localhost:8080/activatelink/" + user.getActivationCode();
             userService.saveUser(user);
-            emailSender.sendEmail(user.getEmail(), "Potwierdzenie rejstracji", content);
             model.addAttribute("message", messageSource.getMessage("user.register.success", null, locale));
             model.addAttribute("user", new User());
             returnPage = "index";
         }
-
         return returnPage;
     }
 

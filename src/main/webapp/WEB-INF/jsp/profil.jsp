@@ -23,7 +23,7 @@
 
 
 </head>
-<body>
+<body class="main_body">
 <%@include file="/WEB-INF/incl/menu.app" %>
 <div align="center">
 	<h2><s:message code="profil.userDane"/></h2>

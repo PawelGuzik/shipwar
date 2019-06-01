@@ -6,15 +6,34 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s"  uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
     <title>Title</title>
 </head>
-<body>
+<body class="main_body">
+<table width="100%" border="0" cellpadding="8" cellspacing="4" class="tableMenuBg" bgcolor="transparent">
+    <tr>
+        <td  align="right" width="1500">
+            <sec:authorize access="isAuthenticated()">
+                <a class="btn btn-primary mb1 bg-olive" role="button" href="${pageContext.request.contextPath}/logout"><s:message code="menu.logout"/></a>&nbsp;&nbsp;
+            </sec:authorize>
+        </td>
+    </tr>
+</table>
 <div class="setshipgrid">
-<h1 class="header">Rozmieść swoje statki: 3 jdnomasztowce, 3 dwumasztowce, 2 trójmasztowce, 1 czteromasztowiec
+<h1 class="header">Rozmieść swoje statki: 3 jdnomasztowce, 3 dwumasztowce, 2 trójmasztowce, 1 czteromasztowiec<br>
+    Uwaga! Statki muszą być ustawione w poziomie, w taki sposób, aby nie stykały się ze sobą.
     </h1>
 <div class="wrapper mybattle">
 
@@ -30,11 +49,12 @@
 
     <button type="button" class="box r" disabled>A</button>
 
+
+
     <button type="button" class="box a"
             <c:choose><c:when test="${shipPos0=='1'}">disabled</c:when></c:choose>
             onclick="this.disabled=true; window.location.href='${pageContext.request.contextPath}/updateShip?id=A1';">
     </button>
-
     <button type="button" class="box a"
             <c:choose><c:when test="${shipPos1=='1'}">disabled</c:when></c:choose>
             onclick="this.disabled=true; window.location.href='${pageContext.request.contextPath}/updateShip?id=A2';">
@@ -330,6 +350,6 @@
        onclick="window.location.href='${pageContext.request.contextPath}/play'" />
 
 </div>
-<h1 style="color: crimson; text-align: center; font-size: 15px">Uwaga! Statki muszą być ustawione w pionie lub w poziomie, w taki sposób, aby nie stykały się ze sobą. </h1>
+<h1 style="color: crimson; text-align: center; font-size: 15px"> </h1>
 </body>
 </html>
