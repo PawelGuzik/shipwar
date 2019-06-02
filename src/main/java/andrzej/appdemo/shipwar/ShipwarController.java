@@ -81,12 +81,26 @@ public class ShipwarController {
         public String showPlayPage(Model model) {
             String username = UserUtilities.getLoggedUser();
             User user = userService.findUserByEmail(username);
-            user.setGameId(2);
-            userService.updateGameId(2, user.getId());
             user.saveStringToWarTable(user.getDataBaseWarTable());
+           if(user.getEnemyId()!=0){
+               User enemy = userService.findUserByEnemyId(user.getId());
+
+               mapWarTable(user, model, "");
+               mapWarTable(enemy, model, "enemy");
+               model.addAttribute("user", user.getName() + " " + user.getLastName());
+               model.addAttribute("enemy", enemy.getName() + " " + enemy.getLastName());
+               if(enemy.getActivePlayer()!=1) {
+                   user.setActivePlayer(1);
+                   userService.updateActivePlayer(1, user.getId());
+               }
+               return "play";}
+                user.setGameId(2);
+                userService.updateGameId(2, user.getId());
+
+
             boolean checkPositions = ShipwarGame.checkShipsPossitionsBeforeGame(user);
             if (checkPositions) {
-                User enemy = userService.findEnemyByGameId(user.getGameId(), username);
+                User enemy = userService.findEnemyByGameId(2, username);
                 if (enemy != null) {
                     user.setEnemyId(enemy.getId());
                     userService.updateEnemyPlayer(enemy.getId(), user.getId());
@@ -101,6 +115,7 @@ public class ShipwarController {
                             user.setActivePlayer(1);
                             userService.updateActivePlayer(1, user.getId());
                         }
+                        userService.updateEnemyPlayer(user.getId(), enemy.getId());
                         userService.updateGameId(3, user.getId());
                         userService.updateGameId(3, enemy.getId());
                         return "play";
@@ -146,13 +161,13 @@ public class ShipwarController {
             }
             if(ShipwarGame.countShipsLeft(enemy) == 0){
                 model.addAttribute("userLose", "Zatopiłeś foltę przeciwnika, bitwa wygrana !");
-                enemy.setGameId(0);
-                userService.updateGameId(0, enemy.getId());
-                userService.updateWarTable(null, enemy.getId());
-                enemy.setActivePlayer(0);
-                userService.updateActivePlayer(0, enemy.getId());
-                enemy.setEnemyId(0);
-                userService.updateEnemyPlayer(0, enemy.getId());
+                user.setGameId(0);
+                userService.updateGameId(0, user.getId());
+                userService.updateWarTable(null, user.getId());
+                user.setActivePlayer(0);
+                userService.updateActivePlayer(0, user.getId());
+                user.setEnemyId(0);
+                userService.updateEnemyPlayer(0, user.getId());
                 return "endGame";
             }
             mapWarTable(user, model, "");

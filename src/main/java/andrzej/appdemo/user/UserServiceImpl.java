@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public User findUserByEnemyId(int enemyId){
+        return userRepository.findByEnemyId(enemyId);
+    }
+
 
 
 
@@ -67,11 +72,6 @@ public class UserServiceImpl implements UserService {
     public User getUserByIdEquals(int id) {
         User user = userRepository.getUserByIdEquals(id);
         return user;
-    }
-
-    @Override
-    public void updateUserActivation(int activeCode, String activationCode) {
-        userRepository.updateActivation(activeCode, activationCode);
     }
 
     @Override

@@ -11,31 +11,48 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * The User class represents a table in the database that describes
+ * the user existing in the system
+ */
 @Entity
 @Table(name = "user")
 public class User {
 
+    /**
+     * Represents the primary key in the user table
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int id;
-
+    /**
+     * Represents email column in the user table
+     */
     @Column(name = "email")
     @NotNull
     private String email;
-
+    /**
+     * Represents password column in the user table
+     */
     @Column(name = "password")
     @NotNull
     private String password;
-
+    /**
+     * Represents name column in the user table
+     */
     @Column(name = "name")
     @NotNull
     private String name;
-
+    /**
+     * Represents last_name column in the user table
+     */
     @Column(name = "last_name")
     @NotNull
     private String lastName;
-
+    /**
+     * Represents active column in the user table
+     */
     @Column(name = "active")
     @NotNull
     private int active;
@@ -44,15 +61,8 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-
-    @Column(name = "activation_code")
-    private String activationCode;
-
-
-
     @Column(name = "game_Id")
     private int gameId;
-
 
     @Column(name = "enemy_id")
     private int enemyId;
@@ -178,15 +188,6 @@ public class User {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
-    }
-
-
-    public String getActivationCode() {
-        return activationCode;
-    }
-
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
     }
 
     public int getGameId() {

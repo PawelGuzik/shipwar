@@ -22,6 +22,12 @@ public class RegisterController {
     @Autowired
     MessageSource messageSource;
 
+    /**
+     * Creates registration form for user.
+     * @param model the model to which we add the User type attribute
+     * @return the register.jsp page
+     */
+
     @GET
     @RequestMapping(value = "/register")
     public String registerForm(Model model) {
@@ -30,18 +36,22 @@ public class RegisterController {
         return "register";
     }
 
+    /**
+     * Checks whether the user is saved in the database by comparing email addresses
+     * @param user the user we are trying to save to the database
+     * @param result  is Spring’s object that holds the result of the validation and binding and contains errors that may have occurred
+     * @param model the model to which we add the attributes to display on JSP page
+     * @param locale a Locale object represents a specific geographical, political, or cultural region.
+     * @return the register.jsp page if there were errors validation errors or the index.jsp page if the new user has been registered correctly
+     */
+
     @POST
     @RequestMapping(value = "/adduser")
     public String registerAction(User user, BindingResult result, Model model, Locale locale) {
-
         String returnPage = null;
-
         User userExist = userService.findUserByEmail(user.getEmail());
-
         new UserRegisterValidator().validateEmailExist(userExist, result);
-
         new UserRegisterValidator().validate(user, result);
-
         if (result.hasErrors()) {
             returnPage = "register";
         } else {
@@ -52,15 +62,4 @@ public class RegisterController {
         }
         return returnPage;
     }
-
-    @POST
-    @RequestMapping(value = "/activatelink/{activationCode}")
-    public String activateAccount(@PathVariable("activationCode") String activationCode, Model model, Locale locale) {
-        userService.updateUserActivation(1, activationCode);
-        model.addAttribute("message", messageSource.getMessage("sukces", null, locale));
-
-        return "index";
-    }
-
-
 }

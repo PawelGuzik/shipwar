@@ -11,7 +11,6 @@ public interface UserService {
 	public List<User> findAll();
 	User findByUserName(String userName);
 	User getUserByIdEquals(int id);
-	public void updateUserActivation(int activeCode, String activationCode);
 
 	public User findEnemyByGameId(int id, String email);
 	public void updateWarTable(String newTable, int id);
@@ -19,5 +18,6 @@ public interface UserService {
 	public List<String> getUsersFromSessionRegistry();
 	public void updateActivePlayer(int activePlayer, int userId);
 	public  void updateEnemyPlayer(int enemyId, int userId);
+	public User findUserByEnemyId(int enemyId);
 
 }
