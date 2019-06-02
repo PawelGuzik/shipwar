@@ -2,17 +2,32 @@ package andrzej.appdemo.shipwar;
 
 import andrzej.appdemo.user.User;
 
+/**
+ * @author Paweł Guzik
+ */
 public class ShipwarGame {
-
+    /**
+     * Returns true if the ship can be set on the position
+     * shipPos in the String table in the User object.
+     *
+     * @param shipPos the location of he ship
+     * @param user the user for which we check ship position
+     * @return true if the ship can be set on the position
+     *      * shipPos or false otherwise.
+     */
     public static boolean checkIfShipsPossitionIsAvalible(User user, String shipPos) {
         String[] warTable = user.getWarTable();
         if (countUsedSquares(user) < 19) {
-
             return true;
         }
-
         return false;
     }
+
+    /**
+     * Calculates the number of ships placed on the board.
+     * @param user the user for which we check ships number on his board.
+     * @return number of ships placed on the board.
+     */
 
     public static int countUsedSquares(User user) {
         String[] warTable = user.getWarTable();
@@ -25,6 +40,15 @@ public class ShipwarGame {
         }
         return ships;
     }
+
+    /**
+     * Checks whether the placement of ships on the board is consistent with the rules.
+     * List of rules:
+     *  - ships can only be placed horizontally
+     *  - there can be only 1 four-masted, 2 three-masted, 3 two-masted, 3 one-masted ships
+     * @param user the user for which we check ships positions on his board.
+     * @return true if the placement of ships is right.
+     */
 
     public static boolean checkShipsPossitionsBeforeGame(User user) {
         String[] warTable = user.getWarTable();
@@ -74,12 +98,26 @@ public class ShipwarGame {
         return false;
     }
 
+    /**
+     * Checks if the ship is on the right side for current position.
+     * @param warTable the table representing the location of ships.
+     * @param currentPos position for which we check presence of other ships.
+     * @return true if there is a ship on the right.
+     */
     private static boolean checkRightSide(String[] warTable, int currentPos){
         if(warTable[currentPos+1].equalsIgnoreCase("1")){
             return true;
         }
         return false;
     }
+
+    /**
+     * If the user is an active player then enemy  is fired
+     * and if after this the enemy has ships, activePlayer's flag goes to the enemy.
+     * @param user the user who shoots the enemy's ship in position ship pos
+     * @param enemy the user to whom the user shoots.
+     * @param shipPos place where user shoots.
+     */
 
     public static void setRoundAndShot(User user,User enemy, String shipPos){
         user.saveStringToWarTable(user.getDataBaseWarTable());
@@ -92,6 +130,12 @@ public class ShipwarGame {
             }
         }
     }
+
+    /**
+     * Counts how many ships left after firing.
+     * @param user the user for whom we check the number of ships we check
+     * @return the number of ships remaining on the board.
+     */
 
     public static int countShipsLeft(User user){
         String str = user.getDataBaseWarTable();

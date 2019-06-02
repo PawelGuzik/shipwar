@@ -12,11 +12,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.ws.rs.GET;
 import java.util.List;
 
+/**
+ * @author Paweł Guzik
+ */
 @Controller
 public class ShipwarController {
+
+
     @Autowired
     private UserService userService;
 
+    /**
+     *  Takes the logged in user sets his gameId to 1 and reset variable
+     *  warTable which represents ships on the board then adds user to the model attributes
+     *  and send it to the shipwarAJAX page.
+     * @param model the model supply attributes used for rendering views.
+     * @return JSP page with the board on which user place his ships.
+     */
 
     @GET
     @RequestMapping(value = "/shipwar")
@@ -25,7 +37,6 @@ public class ShipwarController {
 
         User user = userService.findUserByEmail(username);
         user.setGameId(1);
-        List<String> allLogedUsers = userService.getUsersFromSessionRegistry();
         userService.updateGameId(1, user.getId());
         userService.updateWarTable(null, user.getId());
 
@@ -37,11 +48,18 @@ public class ShipwarController {
         return "shipwarAJAX";
     }
 
+    /**
+     * Takes the logged in user and
+     * sets ship position in MySQL database as '1' character in 64-character String
+     * which represents the board of user ships.
+     *
+     * @param shipPos position that the ship should take on the board.
+     * @param model the model supply attributes used for rendering views.
+     */
+
    @GET
    @RequestMapping(value = "/updateShip")
-
    public synchronized   void updateShip(@RequestParam(value = "id") String shipPos, Model model){
-       //  user.setWarTable();
        String username = UserUtilities.getLoggedUser();
        User user = userService.findUserByEmail(username);
        if(user.getGameId()!=2 && ShipwarGame.checkIfShipsPossitionIsAvalible(user, shipPos)) {
@@ -49,6 +67,15 @@ public class ShipwarController {
            saveShipPos(shipPos, user);
        }
    }
+
+    /**
+     * Checks whether the user has correctly set up the ships and tries to find enemy for current user
+     * If there is an enemy ready to play, his id is assigned to logged in user and variable gameId
+     * is set to 3 that means users currently playing game.
+     * @param model the model supply attributes used for rendering views.
+     * @return  the play.jsp page if users are ready to play or shipwarAJAX.jsp if ships placed on board by
+     * currently logged in user are not right or waiting.jsp if there is no ready to play enemy for current user
+     */
         @GET
         @RequestMapping(value = "/play")
         public String showPlayPage(Model model) {
@@ -74,6 +101,8 @@ public class ShipwarController {
                             user.setActivePlayer(1);
                             userService.updateActivePlayer(1, user.getId());
                         }
+                        userService.updateGameId(3, user.getId());
+                        userService.updateGameId(3, enemy.getId());
                         return "play";
                     }
                 }
@@ -84,6 +113,16 @@ public class ShipwarController {
                 return "shipwarAJAX";
             }
         }
+
+    /**
+     * Is responsible for the exchange of fire and setting,
+     * which the opponent can actually do his round.
+     * Checks if any of the opponents have destroyed all ships and if yes then
+     * ends the game.
+     * @param shipPos  position that the player is firing at
+     * @param model the model supply attributes used for rendering views.
+     * @return the endGame.jsp if there are no ships left or play.jsp if the players still have ships
+     */
 
         @GET
         @RequestMapping(value = "/shot")
@@ -123,6 +162,12 @@ public class ShipwarController {
             return "play";
         }
 
+    /**
+     * Informs that the user has been logged out.
+     * @param model the model supply attributes used for rendering views.
+     * @return the logout_success.jesp page with user name
+     */
+
         @GET
         @RequestMapping(value = "/logout_success")
         public String resetPlayerDataWhenLogout(Model model){
@@ -132,7 +177,15 @@ public class ShipwarController {
             return  "logout_success";
         }
 
-        @GET
+    /**
+     * Checks which player can make the move
+     * and generates a response with this information
+     * for the script on the play.jsp page
+     * @param model the model supply attributes used for rendering views.
+     * @return the contentRefresh.jsp page with information about currently playing user
+     */
+
+    @GET
         @RequestMapping(value = "/reload")
         public String reloadActiveUser(Model model){
             String username = UserUtilities.getLoggedUser();
@@ -147,14 +200,29 @@ public class ShipwarController {
         return "contentRefresh";
         }
 
-        private synchronized void saveShipPos(String shipPos, User user){
+    /**
+     * Saves the ship's position in the database
+     * as the number 1 in the 64-character string variable.
+     * @param shipPos the position of the ship that will be saved to the base
+     * @param user the player for whom we save the position of the ship
+     */
+
+    private synchronized void saveShipPos(String shipPos, User user){
             String[] warTable = user.getWarTable();
             warTable[AppDemoConstants.warTableMap.get(shipPos)] = "1";
             user.setWarTable(warTable);
             userService.updateWarTable(user.getDataBaseWarTable(), user.getId());
         }
 
-        private void mapWarTable(User user, Model model, String prefix){
+    /**
+     * Maps the table representing the location of the player's ships to the model passed
+     * on the page displaying user boards
+     * @param user the user whose table will be mapped
+     * @param model the model to which the user's table will be mapped
+     * @param prefix variable intended to change the name of the mapped attribute in the model
+     */
+
+    private void mapWarTable(User user, Model model, String prefix){
             String[] warTable = user.getWarTable();
 
             for (int i = 0; i < warTable.length; i++) {
