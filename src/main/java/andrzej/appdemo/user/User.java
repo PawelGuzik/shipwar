@@ -134,9 +134,7 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
@@ -239,9 +237,7 @@ public class User {
         this.dataBaseWarTable = dataBaseWarTable;
     }
 
-    public int getActivePlayer() {
-        return activePlayer;
-    }
+    public int getActivePlayer() { return activePlayer; }
 
     public void setActivePlayer(int activePlayer) {
         this.activePlayer = activePlayer;

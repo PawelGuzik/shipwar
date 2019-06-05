@@ -10,13 +10,11 @@ public class ShipwarGame {
      * Returns true if the ship can be set on the position
      * shipPos in the String table in the User object.
      *
-     * @param shipPos the location of he ship
      * @param user the user for which we check ship position
      * @return true if the ship can be set on the position
      *      * shipPos or false otherwise.
      */
-    public static boolean checkIfShipsPossitionIsAvalible(User user, String shipPos) {
-        String[] warTable = user.getWarTable();
+    public static boolean checkIfShipsPossitionIsAvalible(User user) {
         if (countUsedSquares(user) < 19) {
             return true;
         }
