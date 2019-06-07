@@ -1,6 +1,7 @@
 package andrzej.appdemo.shipwar;
 
 import andrzej.appdemo.user.User;
+import andrzej.appdemo.user.UserService;
 
 /**
  * @author Paweł Guzik
@@ -145,6 +146,16 @@ public class ShipwarGame {
         }
         return count;
 
+    }
+
+    public static void endGameMain(User user, UserService userService) {
+        user.setGameId(0);
+        userService.updateGameId(0, user.getId());
+        userService.updateWarTable(null, user.getId());
+        user.setActivePlayer(0);
+        userService.updateActivePlayer(0, user.getId());
+        user.setEnemyId(0);
+        userService.updateEnemyPlayer(0, user.getId());
     }
 }
 

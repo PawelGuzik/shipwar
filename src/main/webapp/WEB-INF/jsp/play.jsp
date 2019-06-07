@@ -259,8 +259,8 @@
         <c:choose>
             <c:when test="${enemyshipPos1=='2'}">destroy"</c:when>
             <c:when test="${enemyshipPos1=='3'}">missed"</c:when>
-    <c:when test="${enemyshipPos1=='0'}">a"</c:when>
-    <c:when test="${enemyshipPos1=='1'}">a"</c:when>
+            <c:when test="${enemyshipPos1=='0'}">a"</c:when>
+            <c:when test="${enemyshipPos1=='1'}">a"</c:when>
     </c:choose>
     onclick="window.location.href='${pageContext.request.contextPath}/shot?id=A2'"
     </button>

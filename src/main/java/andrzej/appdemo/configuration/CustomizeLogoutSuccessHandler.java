@@ -1,10 +1,9 @@
 package andrzej.appdemo.configuration;
 
-import andrzej.appdemo.shipwar.ShipwarController;
+import andrzej.appdemo.shipwar.ShipwarGame;
 import andrzej.appdemo.user.User;
 import andrzej.appdemo.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import java.io.IOException;
 
@@ -31,7 +30,7 @@ public class CustomizeLogoutSuccessHandler implements LogoutSuccessHandler{
             throws IOException, ServletException {
         // Code For Business Here
         User user = userService.findUserByEmail( authentication.getName());
-        ShipwarController.endGameMain(user, userService);
+        ShipwarGame.endGameMain(user, userService);
 
         logger.info("Logout Sucessfull with Principal: " + authentication.getName());
 

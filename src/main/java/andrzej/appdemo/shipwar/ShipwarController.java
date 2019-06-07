@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.ws.rs.GET;
 
@@ -162,17 +163,7 @@ public class ShipwarController {
 
     private void endGameForJsp(Model model, User user, String s) {
         model.addAttribute("userLose", s);
-        endGameMain(user, userService);
-    }
-
-    public static void endGameMain(User user, UserService userService) {
-        user.setGameId(0);
-        userService.updateGameId(0, user.getId());
-        userService.updateWarTable(null, user.getId());
-        user.setActivePlayer(0);
-        userService.updateActivePlayer(0, user.getId());
-        user.setEnemyId(0);
-        userService.updateEnemyPlayer(0, user.getId());
+        ShipwarGame.endGameMain(user, userService);
     }
 
     /**
