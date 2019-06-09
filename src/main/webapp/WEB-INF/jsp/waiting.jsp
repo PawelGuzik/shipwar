@@ -35,7 +35,6 @@
     function Redirect(){
         window.location.href = ('${pageContext.request.contextPath}/play');
     }
-
     setTimeout('Redirect()',10000 );
 </script>
 <h1 class="header">Oczekiwanie na innego gracza...</h1>

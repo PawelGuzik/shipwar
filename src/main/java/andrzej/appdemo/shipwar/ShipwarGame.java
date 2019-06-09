@@ -4,23 +4,12 @@ import andrzej.appdemo.user.User;
 import andrzej.appdemo.user.UserService;
 
 /**
+ *  This class is responsible for controlling the game
+ * It provides methods to check the placement of ships, determine the active player, conduct fire, end the game.
+ *
  * @author Paweł Guzik
  */
 public class ShipwarGame {
-    /**
-     * Returns true if the ship can be set on the position
-     * shipPos in the String table in the User object.
-     *
-     * @param user the user for which we check ship position
-     * @return true if the ship can be set on the position
-     *      * shipPos or false otherwise.
-     */
-    public static boolean checkIfShipsPossitionIsAvalible(User user) {
-        if (countUsedSquares(user) < 19) {
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Calculates the number of ships placed on the board.
@@ -96,6 +85,20 @@ public class ShipwarGame {
         }
         return false;
     }
+    /**
+     * Returns true if the ship can be set on the position
+     * shipPos in the String table in the User object.
+     *
+     * @param user the user for which we check ship position
+     * @return true if the ship can be set on the position
+     *      * shipPos or false otherwise.
+     */
+    public static boolean checkIfShipsPossitionIsAvalible(User user) {
+        if (countUsedSquares(user) < 19) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Checks if the ship is on the right side for current position.
@@ -122,8 +125,8 @@ public class ShipwarGame {
         user.saveStringToWarTable(user.getDataBaseWarTable());
         enemy.saveStringToWarTable(enemy.getDataBaseWarTable());
         if(user.getActivePlayer()==1) {
-            enemy.getShot(shipPos);
-            if(ShipwarGame.countShipsLeft(enemy) != 0) {
+            boolean x = enemy.getShot(shipPos);
+            if(ShipwarGame.countShipsLeft(enemy) != 0 && x==false) {
                 user.setActivePlayer(0);
                 enemy.setActivePlayer(1);
             }
@@ -147,6 +150,13 @@ public class ShipwarGame {
         return count;
 
     }
+
+    /**
+     * when one of the players loses all ships, this function clears the data about the finished game,
+     * in the user object and in the database.
+     * @param user the user whose game data will be deleted.
+     * @param userService  is the object responsible for communication with the database.
+     */
 
     public static void endGameMain(User user, UserService userService) {
         user.setGameId(0);

@@ -298,7 +298,7 @@
             // code for IE6, IE5
             xhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        xhttp.open("GET", s, true);
+        xhttp.open("GET", s);
                 document.getElementById(btn.id).disabled = true;
         xhttp.send();
 
