@@ -1,3 +1,7 @@
+
+<!--
+Author Paweł Guzik
+-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
@@ -9,18 +13,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
-
-    <link  type="text/css" href="/resources/css/style.css" rel="stylesheet">
-
-
+    <link  type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
     <%--<!-- css custom styling-->--%>
-
-
-
-
-
 
 <body class="main_body">
 <div class="index_container">
@@ -44,7 +39,6 @@
     </div>
 </div>
 <%--<div class="container-fluid" style="background-color:#e6c943">--%>
-
 
 </div>
 </body>

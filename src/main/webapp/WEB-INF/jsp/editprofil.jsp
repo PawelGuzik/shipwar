@@ -62,7 +62,7 @@
 				<td colspan="2" align="center" bgcolor="#fff">
 					<input type="submit" class="btn btn-primary" value="<s:message code="button.save"/>" />
 					<input type="button" class="btn btn-primary" value="<s:message code="button.cancel"/>"
-						onclick="window.location.href='${pageContext.request.contextPath}/shipwar'"/>
+						onclick="window.location.href='${pageContext.request.contextPath}/index'"/>
 				</td>
 			</tr>
 

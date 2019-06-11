@@ -1,14 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="appPot:war exploded">
-    <output-path>$PROJECT_DIR$/target/appdemo-0.0.1-SNAPSHOT</output-path>
-    <properties id="maven-jee-properties">
-      <options>
-        <exploded>true</exploded>
-        <module>appPot</module>
-        <packaging>war</packaging>
-      </options>
-    </properties>
-    <root id="root">
+  <artifact type="war" name="Shipwar2">
+    <output-path>$PROJECT_DIR$/classes/artifacts/Shipwar2</output-path>
+    <root id="archive" name="Shipwar2.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="appPot" />
@@ -125,10 +118,30 @@
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.6" />
         </element>
       </element>
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/appdemo-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
-      </element>
       <element id="javaee-facet-resources" facet="appPot/web/Web" />
+      <element id="directory" name="resources">
+        <element id="directory" name="static">
+          <element id="directory" name="css">
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
+          </element>
+          <element id="directory" name="images">
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/clear-sea.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/clear-sea2.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/delicon.png" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/deliconinact.png" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/end_game.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/fog5.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/main-sea.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/niedokonczona11.png" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/small_ship2.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/small_ship_burning.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/stamperror.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/win_game.jpg" />
+            <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/static/images/win_game2.jpg" />
+          </element>
+        </element>
+        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/static" />
+      </element>
     </root>
   </artifact>
 </component>

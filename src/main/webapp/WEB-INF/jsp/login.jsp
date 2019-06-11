@@ -16,7 +16,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link  type="text/css" href="/resources/css/style.css" rel="stylesheet">
+    <link  type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 
 <%--<!-- Bootstrap CSS -->--%>
     <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">--%>
@@ -31,7 +31,7 @@
     <h2 align="center"><s:message code="logowanie.pageName"/>
 </h2>
 
-<form id="loginForm" action="/login" method="POST" >
+<form id="loginForm" action="${pageContext.request.contextPath}/login" method="POST" >
 
     <table width="350" border="0" cellpadding="4" cellspacing="1"
            align="center">
